@@ -12,7 +12,6 @@
 
 int main( int argc, char *argv[] ) 
 {
-	int i;
 	if(argc != 4)
 	{	 
  		printf(" Error: Usage:  ./quadratic3 a b c\n");
