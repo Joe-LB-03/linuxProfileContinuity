@@ -60,10 +60,17 @@ int main( int argc, char **argv )
  			printf("Found an invalid student id: %d. Exiting.\n",id); // requires student id
 			return 0;
 		}
-
-		for(j = 1; i <5; i++)
+		
+		for(j = 1; j < 5; j++)
 		{
 			int grade = results[i][j];
+
+			if((grade > 100 || grade < 1))
+			{
+  				printf("Found an invalid grade: id %d grade %d. Exiting.\n", id,grade ); // requires student id and relevant grade
+				return 0;
+			}
+
 			if(grade<20)
 			{	
 				results[i][j] = 20;

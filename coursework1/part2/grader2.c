@@ -45,7 +45,7 @@ int main( int argc, char **argv )
 	for(i = 0; i < atoi(argv[1]); i++)
 	{
 		fscanf(fp, "%d", &results[i][0]);
-		for(j = 1; j < atoi(argv[2]); j++)
+		for(j = 1; j <= atoi(argv[2]); j++)
 		{
 			fscanf(fp, " %d", &results[i][j]);
 		}	
@@ -56,16 +56,73 @@ int main( int argc, char **argv )
 
   	// data processing
   	printf("Checking data.\n");
-  	printf("Found an invalid student id: %d. Exiting.\n", id ); // requires student id
-  	printf("Found an invalid grade: id %d grade %d. Exiting.\n", id,grade ); // requires student id and relevant grade
-  	printf("Correcting student %d grade %d\n", id,grade ); // requires student id and relevant grade
+
+	for(i = 0; i < atoi(argv[1]); i++)
+	{
+		int id = results[i][0];
+		if(id < 2022000 || id > 2022099)
+		{
+  			printf("Found an invalid student id: %d. Exiting.\n", id ); // requires student id
+			return 0;
+		}
+
+		for(j = 1; j < atoi(argv[2]); j++)
+		{
+			int grade = results[i][j];
+			if((grade > 100 || grade < 1)&&(grade != -1))
+			{
+  				printf("Found an invalid grade: id %d grade %d. Exiting.\n", id,grade ); // requires student id and relevant grade
+				return 0;
+			}
+			if(grade < 20 && grade != -1)
+			{
+				results[i][j] = 20;
+				printf("Correcting student %d grade %d\n", id,grade ); // requires student id and relevant grade
+			}
+			if(grade > 90)
+			{
+				results[i][j] = 90;
+				printf("Correcting student %d grade %d\n", id,grade ); // requires student id and relevant grade
+			}
+		}
+	}
+
   	// compute averages
-	
   	printf("Computing averages.\n");
+
+	for(i = 0; i < atoi(argv[1]); i++)
+	{
+		int itemsToCount = 0;
+		int total = 0;
+		for(j = 1; j <= atoi(argv[2]); j++)
+		{
+			if(results[i][j] != -1)
+			{
+				itemsToCount++;
+			}
+			else
+			{
+				results[i][j] = 0;
+			}
+			total = total + results[i][j];
+		}
+		float average = roundf((float)total/(float)itemsToCount);
+		results[i][atoi(argv[2])+1] = (int)average;
+
+	}
 
  	// writing to file
   	printf("Output file. Opening.\n");
+
+	fp = fopen("averages.txt","w");
+
+	for(i = 0; i < atoi(argv[1]); i++)
+	{
+		fprintf(fp,"%d %d\n",results[i][0],results[i][atoi(argv[2])+1]);
+	}
+
 	printf("Output file. Closing.\n");
+	fclose(fp);
 
 	return 0;
 }
