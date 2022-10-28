@@ -10,6 +10,8 @@
 #include <stdio.h>
 #include <math.h>
 
+int roundNo(float);
+
 int main( int argc, char **argv )
 {
 	FILE *fp;
@@ -88,8 +90,8 @@ int main( int argc, char **argv )
 	
 	for(i = 0; i < 32; i++)
 	{
-		float average = roundf(((float)results[i][1]+(float)results[i][2]+(float)results[i][3]+(float)results[i][4])/4);
-		results[i][5] = (int)average;
+		int average = roundNo(((float)results[i][1]+(float)results[i][2]+(float)results[i][3]+(float)results[i][4])/4);
+		results[i][5] = average;
 	}
 
  	// writing to file
@@ -106,4 +108,9 @@ int main( int argc, char **argv )
 	fclose(fp);
 	
  	return 0;
+}
+
+int roundNo(float num)
+{
+	return (int) (num < 0 ? num - 0.5 : num + 0.5);
 }

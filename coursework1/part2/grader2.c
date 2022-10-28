@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <math.h>
 
+int roundNum(float);
+
 int main( int argc, char **argv ) 
 {
 	FILE *fp;
@@ -106,7 +108,7 @@ int main( int argc, char **argv )
 			}
 			total = total + results[i][j];
 		}
-		float average = roundf((float)total/(float)itemsToCount);
+		int average = roundNum((float)total/(float)itemsToCount);
 		results[i][atoi(argv[2])+1] = (int)average;
 
 	}
@@ -125,5 +127,10 @@ int main( int argc, char **argv )
 	fclose(fp);
 
 	return 0;
+}
+
+int roundNum(float num)
+{
+	return (int) (num < 0 ? num - 0.5 : num + 0.5);
 }
 
