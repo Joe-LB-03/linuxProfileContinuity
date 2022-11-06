@@ -18,16 +18,19 @@ int main( int argc, char **argv )
 	if(atoi(argv[1]) > 100 || atoi(argv[1]) < 1)
 	{
 		printf("Requires 1 to 100 students. Exiting.\n");
+		return 0;
 	}
 
 	if(atoi(argv[2]) > 8 || atoi(argv[2]) < 1)
 	{
   		printf("Requires 1 to 8 grades. Exiting.\n");
+		return 0;
 	}
 
   	if(!(fopen(argv[3],"r")))
 	{
 		printf("Input file does not exist. Exiting.\n");
+		return 0;
 	}
 
 	// reading from file

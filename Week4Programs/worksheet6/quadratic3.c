@@ -10,22 +10,27 @@
  * You should use them at appropriate places in your program 
  */
 
+//so yeah, this one is autograded. no debug prints, just the ones they gave us in the starting file. I'll point these out as we go.
+
 int main( int argc, char *argv[] ) 
 {
-	if(argc != 4)
+	if(argc != 4) //same as before, if the user got the format wrong, just tell em and quit the program.
 	{	 
- 		printf(" Error: Usage:  ./quadratic3 a b c\n");
+ 		printf(" Error: Usage:  ./quadratic3 a b c\n"); //this print is given, you just need to wrap it with the if statement.
 		return 0;
 	}
 	
-	float a = atof(argv[1]);
-	float b = atof(argv[2]);
-	float c = atof(argv[3]);
+	float a = atof(argv[1]); //created these as a variable to store the given a, b and c numbers for calculations.
+	float b = atof(argv[2]); //they are stored at the 1,2 and 3 locations in argv as strings, so i used atof to convert them to floats
+	float c = atof(argv[3]); //remember arrays start from 0, so the executable name is stored there, thus the a b c values are [1][2][3] respectively
 	
  	// display the equation using the provided coefficients
- 	printf(" Solutions for: (%5.2f) x^2 + (%5.2f) x + (%5.2f) = 0\n",a,b,c);
+ 	printf(" Solutions for: (%5.2f) x^2 + (%5.2f) x + (%5.2f) = 0\n",a,b,c); //this is given too, just prints what calculation is being done.
+																			 //only thing to be aware of here is matching the a,b,c variable names
 	
-	float d = (b*b)-((4*a)*c);
+	float d = (b*b)-((4*a)*c); //the rest of the program is basically the same as the last quadratic assignment. here i calculate the discriminant.
+
+	//i think the rest is fairly self-explainatory! good luck :)
 
 	if(d<0||((a==0)&&(b==0)&&(c==0)))
 	{

@@ -24,28 +24,27 @@ int main( int argc, char **argv )
 	if(!(fopen(argv[1],"r")))
 	{
   		printf("Input file does not exist. Exiting.\n");
+		return 0;
   	}
 
   	// reading from file
  	printf("Input file. Opening.\n");
 	fp = fopen(argv[1],"r");
-	
 	int* results[32];
-	int i;
-	int id, score1, score2, score3, score4;
+	int i, j;
+	int reading[5];
 	for(i = 0; i < 32; i++)
 	{
 		results[i] = (int*)malloc(6*sizeof(int));
 	}
-
 	for(i = 0; i < 32; i++)
 	{
-		fscanf(fp, "%d %d %d %d %d", &id, &score1, &score2, &score3, &score4);
-		results[i][0] = id;
-		results[i][1] = score1;
-		results[i][2] = score2;
-		results[i][3] = score3;
-		results[i][4] = score4;
+		fscanf(fp, " %d %d %d %d %d", &reading[0], &reading[1], &reading[2], &reading[3], &reading[4]);
+		results[i][0] = reading[0];
+		results[i][1] = reading[1];
+		results[i][2] = reading[2];
+		results[i][3] = reading[3];
+		results[i][4] = reading[4];
 	}
 
  	printf("Input file. Closing.\n");
@@ -53,10 +52,9 @@ int main( int argc, char **argv )
 
  	// data processing
 	printf("Checking data.\n");
-	int j;
 	for(i = 0; i < 32; i++)
 	{
-		id = results[i][0];	
+		int id = results[i][0];	
 		if(id < 2022000 || id > 2022099)
 		{
  			printf("Found an invalid student id: %d. Exiting.\n",id); // requires student id
