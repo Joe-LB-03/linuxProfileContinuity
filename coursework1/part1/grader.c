@@ -99,7 +99,7 @@ int main( int argc, char **argv )
 
 	for(i = 0; i < 32; i++)
 	{
-		fprintf(fp,"%d %d\n",results[i][0],results[i][5]);
+		fprintf(fp," %d %d\n",results[i][0],results[i][5]);
 	}
 
 	printf("Output file. Closing.\n");

@@ -99,6 +99,7 @@ int main( int argc, char **argv )
 	{
 		int itemsToCount = 0;
 		int total = 0;
+		int average = 0;
 		for(j = 1; j <= atoi(argv[2]); j++)
 		{
 			if(results[i][j] != -1)
@@ -111,9 +112,15 @@ int main( int argc, char **argv )
 			}
 			total = total + results[i][j];
 		}
-		int average = roundNum((float)total/(float)itemsToCount);
+		if(itemsToCount == 0)
+		{
+			average = 0;
+		}
+		else
+		{
+			average = roundNum((float)total/(float)itemsToCount);
+		}
 		results[i][atoi(argv[2])+1] = (int)average;
-
 	}
 
  	// writing to file
@@ -123,7 +130,7 @@ int main( int argc, char **argv )
 
 	for(i = 0; i < atoi(argv[1]); i++)
 	{
-		fprintf(fp,"%d %d\n",results[i][0],results[i][atoi(argv[2])+1]);
+		fprintf(fp," %d %d\n",results[i][0],results[i][atoi(argv[2])+1]);
 	}
 
 	printf("Output file. Closing.\n");
