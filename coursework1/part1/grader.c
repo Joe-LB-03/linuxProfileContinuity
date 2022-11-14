@@ -26,7 +26,6 @@ int main( int argc, char **argv )
 	fp = fopen(argv[1],"r");
 	int* results[32];
 	int i, j;
-	int reading[5];
 	//dynamically create a 2d array to store input data
 	for(i = 0; i < 32; i++)
 	{
@@ -35,12 +34,7 @@ int main( int argc, char **argv )
 	//read data from file
 	for(i = 0; i < 32; i++)
 	{
-		fscanf(fp, " %d %d %d %d %d", &reading[0], &reading[1], &reading[2], &reading[3], &reading[4]);
-		results[i][0] = reading[0];
-		results[i][1] = reading[1];
-		results[i][2] = reading[2];
-		results[i][3] = reading[3];
-		results[i][4] = reading[4];
+		fscanf(fp, " %d %d %d %d %d", &results[i][0], &results[i][1], &results[i][2], &results[i][3], &results[i][4]);
 	}
 
  	printf("Input file. Closing.\n");
