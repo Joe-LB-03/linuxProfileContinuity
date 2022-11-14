@@ -13,15 +13,19 @@
 
 int8_t b[1760], z[1760];
 
-void main() {
+void main() 
+{
   int sA=1024,cA=0,sB=1024,cB=0,_;
-  for (;;) {
+  for (;;) 
+  {
     memset(b, 32, 1760);  // text buffer
     memset(z, 127, 1760);   // z buffer
     int sj=0, cj=1024;
-    for (int j = 0; j < 90; j++) {
+    for (int j = 0; j < 90; j++) 
+    {
       int si = 0, ci = 1024;  // sine and cosine of angle i
-      for (int i = 0; i < 324; i++) {
+      for (int i = 0; i < 324; i++) 
+      {
         int R1 = 1, R2 = 2048, K2 = 5120*1024;
 
         int x0 = R1*cj + R2,
@@ -38,7 +42,8 @@ void main() {
 
         int o = x + 80 * y;
         int8_t zz = (x6-K2)>>15;
-        if (22 > y && y > 0 && x > 0 && 80 > x && zz < z[o]) {
+        if (22 > y && y > 0 && x > 0 && 80 > x && zz < z[o]) 
+	{
           z[o] = zz;
           b[o] = ".,-~:;=!*#$@"[N > 0 ? N : 0];
         }
