@@ -26,7 +26,7 @@ Node *createNode( Data *data );
 void freeNode( Node *node );
 
 Node *addNodeAtHead( Node *head, Node *new );
-void addNodeAtTail( Node *head, Node *new );
+Node *addNodeAtTail( Node *head, Node *new );
 void insertNodeAfter( Node *location, Node *new );
 Node *deleteNextNode( Node *location );
 
@@ -65,7 +65,7 @@ int main( void )
 
 	newData = createData( -1, -2.0 );
 	newNode = createNode( newData );
-	insertNodeAfter( head->next, newNode );
+	insertNodeAfter( head, newNode );
 
 	// traverse the list and print out the data
 	printList( head );
@@ -97,7 +97,7 @@ int main( void )
 	newData = createData( -8, -3.2 );
 	newNode = createNode( newData );
 
-	addNodeAtTail( head, newNode );
+	head = addNodeAtTail( head, newNode );
 
 	// traverse the list and print out the data
 	printList( head );
@@ -173,7 +173,7 @@ Node *addNodeAtHead( Node *head, Node *newNode )
  * add a node to the list at the tail
  */
 
-void addNodeAtTail( Node *head, Node *newNode )
+Node *addNodeAtTail( Node *head, Node *newNode )
 {
 	newNode->next = NULL;
 	Node *last = head;
@@ -181,14 +181,14 @@ void addNodeAtTail( Node *head, Node *newNode )
 	if(head == NULL)
 	{
 		head = newNode;
-		return;
+		return head;
 	}
 	while(last->next != NULL)
 	{
 		last = last->next;
 	}
 	last->next = newNode;
-    return;
+    return head;
 } 
 
 /*
