@@ -58,7 +58,7 @@ void checkOverdrawn(BankAccount *accountArray, int numberOfAccounts)
     {
         if(accountArray[i].balance < 0)
         {
-            printf("Account number %d is overdrawn. Balance: %.2f\n", accountArray[i].accountNumber, accountArray[i].balance);
+            printf("WARNING: BROKE ASS MF DETECTED. Account %d has a balance of %.2f\n", accountArray[i].accountNumber, accountArray[i].balance);
         }
     }
 }
