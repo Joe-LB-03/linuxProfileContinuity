@@ -56,7 +56,7 @@ int main( int argc, char **argv )
 		{
 			int grade = results[i][j];
 
-			if((grade > 100 || grade < 1))
+			if((grade > 100 || grade < 0))
 			{
   				printf("Found an invalid grade: id %d grade %d. Exiting.\n", id,grade ); // requires student id and relevant grade
 				return 0;

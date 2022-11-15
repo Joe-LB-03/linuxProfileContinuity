@@ -74,7 +74,7 @@ int main( int argc, char **argv )
 		for(j = 1; j < atoi(argv[2]); j++)
 		{
 			int grade = results[i][j];
-			if((grade > 100 || grade < 1)&&(grade != -1)) //account for possible -1 case
+			if((grade > 100 || grade < 0)&&(grade != -1)) //account for possible -1 case
 			{
   				printf("Found an invalid grade: id %d grade %d. Exiting.\n", id,grade ); // requires student id and relevant grade
 				return 0;
