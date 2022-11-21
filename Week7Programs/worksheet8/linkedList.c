@@ -91,7 +91,7 @@ int main( void )
 	// traverse the list and print out the data
 	printList( head );
 
-	// insert a new node at the head
+	// insert a new node at the tail
 	printf( "\nCreate a node and insert it at the tail\n" );
 
 	newData = createData( -8, -3.2 );
