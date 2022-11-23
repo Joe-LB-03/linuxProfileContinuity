@@ -14,12 +14,7 @@ Game *initGame( int boardSize, int winLength )
     Game *game;
 
     // for incorrect boardSize or winLength you should return a NULL pointer
-    if(boardSize < 3 || boardSize > 8)
-    {
-        printf("Incorrect parameter values for board size or win length. Exiting\n");
-        return NULL;
-    }
-    if(winLength < 3 || winLength > boardSize)
+    if(boardSize < 3 || boardSize > 8 || winLength < 3 || winLength > boardSize)
     {
         printf("Incorrect parameter values for board size or win length. Exiting\n");
         return NULL;
@@ -27,7 +22,7 @@ Game *initGame( int boardSize, int winLength )
 
     // allocate the Game data structure
     game = (Game *)malloc(sizeof(Game));
-    
+
     // intialise the Game data structure values 
     game->boardSize = boardSize;
     game->winLength = winLength;

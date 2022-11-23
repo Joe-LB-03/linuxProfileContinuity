@@ -1,5 +1,6 @@
 
 #include <stdio.h>
+#include <ctype.h>
 
 #include "game.h"
 #include "playGame.h"
@@ -26,10 +27,14 @@ void playGame( Game *game )
         // Request a move from the next player and check it is valid (an unused square within the board)
         printf("Player %c: Enter your move as row column values:\n",symbols[player]); // use this to request the player move
         int x,y;
-        scanf("%d %d",&x,&y);
+        while(inputHandler(&x,&y) == 0)
+        {
+            // If the move is invalid you should repeat the request for the current player
+            printf("Move rejected. Please try again\n"); // use this message if move cannot be made. You must repeat the request for a move
+            printf("Player %c: Enter your move as row column values:\n",symbols[player]); // use this to request the player move
+        }
 
-        // If the move is invalid you should repeat the request for the current player
-        printf("Move rejected. Please try again\n"); // use this message if move cannot be made. You must repeat the request for a move
+        
 
         // If the move is valid update the board
     
@@ -79,3 +84,37 @@ int makeMove( Game *game, char symbol )
     return 1; // move accepted
 }
 
+int inputHandler(int* x, int* y)
+{
+    char str[100] = {0};
+    int digits = 0;
+    fgets(str, 100, stdin);
+
+    for(int i = 0; i < 100; i++)
+    {
+        if(isdigit(str[i]))
+        {
+            digits++;
+        }
+        if(!isdigit(str[i]) && (!isspace(str[i])) && (str[i] != '\0'))
+        {
+            if((i != 0) && (str[i - 1] != ' '))
+            {
+                return 0; //input rejected
+            }
+        }
+
+        if((str[i] == '\n') || (str[i] == '\0'))
+        {
+            break; //if we hit a newline or terminating character then break
+        }
+    }
+
+    if(digits != 2)
+    {
+        return 0; //input rejected
+    }
+    
+    sscanf(str, "%d%d", &x, &y);
+    return 1; //input accepted
+}
