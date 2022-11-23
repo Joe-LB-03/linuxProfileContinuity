@@ -9,18 +9,40 @@
  * Intialise game data for a new game
  */
 
-Game *initGame( int boardSize, int winLength ) {
+Game *initGame( int boardSize, int winLength ) 
+{
+    Game *game;
 
-  Game *game;
+    // for incorrect boardSize or winLength you should return a NULL pointer
+    if(boardSize < 3 || boardSize > 8)
+    {
+        printf("Incorrect parameter values for board size or win length. Exiting\n");
+        return NULL;
+    }
+    if(winLength < 3 || winLength > boardSize)
+    {
+        printf("Incorrect parameter values for board size or win length. Exiting\n");
+        return NULL;
+    }
 
-  // for incorrect boardSize or winLength you should return a NULL pointer
-  printf("Incorrect parameter values for board size or win length. Exiting\n");
+    // allocate the Game data structure
+    game = (Game *)malloc(sizeof(Game));
+    
+    // intialise the Game data structure values 
+    game->boardSize = boardSize;
+    game->winLength = winLength;
 
-  // allocate the Game data structure
-  // intialise the Game data structure values 
-  // board values should be set to '.' (unused location)
-  
-  return game;
+    // board values should be set to '.' (unused location)
+    int i,j;
+    for(i=0;i<game->boardSize;i++)
+    {
+        for(j=0;j<game->winLength;j++)
+        {
+            game->board[i][j] = '.';
+        }
+    }
+
+    return game;
 }
 
 
