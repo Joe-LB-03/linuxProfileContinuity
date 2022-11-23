@@ -2,8 +2,8 @@
 # code details
 
 EXE = ./bin/tictactoe
-SRC =                  # ** list source code here **
-OBJ =                  # ** list object code here **
+SRC = endGame.c initGame.c main.c playGame.c  # ** list source code here **
+OBJ = endGame.h game.h initGame.h playGame.h  # ** list object code here **
 
 # generic build details
 

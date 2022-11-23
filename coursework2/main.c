@@ -3,21 +3,25 @@
 #include <stdlib.h>
 
 #include "game.h"
+#include "initGame.h"
+#include "playGame.h"
 
 /*
  * main function: program entry point
  */
 
-int main( int argc, char *argv[] ) {
+int main( int argc, char *argv[] ) 
+{
+    Game *game; // pointer for the game structure
 
-  Game *game; // pointer for the game structure
+    // allocate memory and assign starting values to the structure
+    game = initGame(stoi(argv[1]),stoi(argv[2]));
 
-  // allocate memory and assign starting values to the structure
+    // play a full game
+    playGame(game);
 
-  // play a full game
+    free(game); // free heap memory that was used
 
-  free( game ); // free heap memory that was used
-
-  return 0;
+    return 0;
 }
 
