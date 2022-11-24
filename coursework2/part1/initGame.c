@@ -26,6 +26,8 @@ Game *initGame( int boardSize, int winLength )
     // intialise the Game data structure values 
     game->boardSize = boardSize;
     game->winLength = winLength;
+    game->turns = 0;
+    game->maxTurns = boardSize * boardSize;
 
     // board values should be set to '.' (unused location)
     for(i=0;i<boardSize;i++)

@@ -12,6 +12,7 @@
 
 int main( void ) 
 {
+    
     Game *game; // pointer for the game structure
 
     // allocate memory and assign starting values to the structure
