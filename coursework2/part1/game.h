@@ -5,7 +5,7 @@
 
 typedef struct _game 
 {
-    char **board;    // board for storing the game state
+    char board[8][8];    // board for storing the game state
     int boardSize;       // board size 
     int winLength;       // length of a winning line
     int maxTurns;        // maximum possible moves

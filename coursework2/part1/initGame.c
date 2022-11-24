@@ -13,6 +13,7 @@ Game *initGame( int boardSize, int winLength )
 {
     Game *game;
     int i,j;
+
     // for incorrect boardSize or winLength you should return a NULL pointer
     if(boardSize < 3 || boardSize > 8 || winLength < 3 || winLength > boardSize)
     {
@@ -20,8 +21,7 @@ Game *initGame( int boardSize, int winLength )
         return NULL;
     }
     // allocate the Game data structure
-    game = (Game *)malloc(sizeof(Game) + (sizeof(char)*boardSize*boardSize));
-    createArray(game);
+    game = (Game *)malloc(sizeof(Game));
 
     // intialise the Game data structure values 
     game->boardSize = boardSize;
@@ -37,16 +37,4 @@ Game *initGame( int boardSize, int winLength )
         }
     }
     return game;
-}
-
-void createArray(Game *game)
-{
-    int i;
-    char* array[game->boardSize];
-    for(i=0;i<game->boardSize;i++)
-    {
-        array[i] = (char*)malloc(sizeof(char)*game->winLength);   
-    }
-
-    game->board = array;
 }
