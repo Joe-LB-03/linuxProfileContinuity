@@ -57,6 +57,7 @@ void playGame( Game *game )
         if(drawGame(game))
         {
             printf("Match is drawn\n"); // use to announce a draw - game is over
+            return;
         }
         if(player == 0)
         {

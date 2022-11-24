@@ -34,7 +34,10 @@ int winGame( Game *game, char symbol, int x, int y )
 int drawGame( Game *game ) 
 {
     // return 1(true) if game is drawn, 0(false) otherwise
-
+    if(game->turns == game->maxTurns)
+    {
+        return 1;
+    }
     return 0; // continue
 }
 
