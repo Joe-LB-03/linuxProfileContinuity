@@ -12,6 +12,12 @@
 
 int main( int argc, char *argv[] ) 
 {
+    if(argc != 3)
+    {
+        printf("Incorrect parameter values for board size or win length. Exiting\n");
+        return 0;
+    }
+    
     Game *game; // pointer for the game structure
 
     // allocate memory and assign starting values to the structure

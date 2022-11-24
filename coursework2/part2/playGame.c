@@ -19,6 +19,7 @@ void playGame( Game *game )
     // starting board
     printf("New game starting\n");
     showGame( game );
+    int moveGood;
   
     // Your game should be controlled by an outer loop
     // Each pass through the loop is one completed move by a player
@@ -27,23 +28,44 @@ void playGame( Game *game )
         // Request a move from the next player and check it is valid (an unused square within the board)
         printf("Player %c: Enter your move as row column values:\n",symbols[player]); // use this to request the player move
         int x,y;
-        while(inputHandler(&x,&y) == 0)
-        {
-            // If the move is invalid you should repeat the request for the current player
-            printf("Move rejected. Please try again\n"); // use this message if move cannot be made. You must repeat the request for a move
-            printf("Player %c: Enter your move as row column values:\n",symbols[player]); // use this to request the player move
-        }
-
         
-
-        // If the move is valid update the board
-    
+        do
+        {
+            while(inputHandler(&x,&y) == 0)
+            {
+                // If the move is invalid you should repeat the request for the current player
+                printf("Move rejected. Please try again\n"); // use this message if move cannot be made. You must repeat the request for a move
+                printf("Player %c: Enter your move as row column values:\n",symbols[player]); // use this to request the player move
+            }
+            moveGood = makeMove(game,symbols[player],x,y);
+            if(moveGood == 0)
+            {
+                printf("Move rejected. Please try again\n");
+            }
+        } while ( moveGood == 0 );// If the move is valid update the board
+        
         // After each completed move display the board 
         showGame( game );
+        game->turns++;
 
         // After each valid move you can test for win or draw using functions you implement in endGame.c
-        printf("Player %c has won\n",symbols[player]); // use to announce a winner - game is over
-        printf("Match is drawn\n"); // use to announce a draw - game is over
+        if(winGame(game,symbols[player],x,y))
+        {
+            printf("Player %c has won\n",symbols[player]); // use to announce a winner - game is over
+            return;
+        }
+        if(drawGame(game))
+        {
+            printf("Match is drawn\n"); // use to announce a draw - game is over
+        }
+        if(player == 0)
+        {
+            player = 1;
+        }
+        else
+        {
+            player = 0;
+        }
     }
     return;
 }
@@ -88,15 +110,19 @@ void showGame( Game *game )
  * If invalid reject the move (return 0)
  */
 
-int makeMove( Game *game, char symbol ) 
+int makeMove( Game *game, char symbol, int x, int y ) 
 {
     // read the players move from the keyboard, expected as two integers coordinates as shown on the board 
-
-     // test that the chosen location is a valid empty space
-    // if we do not accept the move return 0
-
-    // if we accept then update the board and return 1
-
+    if(game->board[x][y] == '.') // test that the chosen location is a valid empty space
+    {
+        // if we accept then update the board and return 1
+        game->board[x][y] = symbol;
+        return 1;
+    }
+    else
+    {
+        return 0; // if we do not accept the move return 0
+    }
     return 1; // move accepted
 }
 
@@ -104,6 +130,7 @@ int inputHandler(int* x, int* y)
 {
     char str[100] = {0};
     int digits = 0;
+    fflush(stdin);
     fgets(str, 100, stdin);
 
     for(int i = 0; i < 100; i++)
@@ -114,7 +141,7 @@ int inputHandler(int* x, int* y)
         }
         if(!isdigit(str[i]) && (!isspace(str[i])) && (str[i] != '\0'))
         {
-            if((i != 0) && (str[i - 1] != ' '))
+            if(((i != 0) && (str[i - 1] != ' ')) || (str[i] == ' ' && str[i-1] == ' '))
             {
                 return 0; //input rejected
             }

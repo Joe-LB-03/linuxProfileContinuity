@@ -10,12 +10,12 @@
  * main function: program entry point
  */
 
-int main( int argc, char *argv[] ) 
+int main( void ) 
 {
     Game *game; // pointer for the game structure
 
     // allocate memory and assign starting values to the structure
-    game = initGame(atoi(argv[1]),atoi(argv[2]));
+    game = initGame(3,3);
     if ( game == NULL )
     {
         return 0;

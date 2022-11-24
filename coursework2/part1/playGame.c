@@ -34,8 +34,6 @@ void playGame( Game *game )
             printf("Player %c: Enter your move as row column values:\n",symbols[player]); // use this to request the player move
         }
 
-        
-
         // If the move is valid update the board
     
         // After each completed move display the board 
