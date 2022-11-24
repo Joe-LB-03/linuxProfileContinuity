@@ -4,6 +4,7 @@
 
 #include "game.h"
 #include "playGame.h"
+#include "endGame.h"
 
 /*
  * Controls the game logic from start to end
@@ -114,7 +115,7 @@ int inputHandler(int* x, int* y)
     {
         return 0; //input rejected
     }
-    
-    sscanf(str, "%d%d", &x, &y);
+
+    sscanf(str, "%d%d", x, y);
     return 1; //input accepted
 }
