@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 
 #include "game.h"
@@ -41,6 +40,7 @@ int drawGame( Game *game )
     return 0; // continue
 }
 
+// check for a win vertically
 int checkVertical(Game *game, int x, int y, char symbol)
 {
     int i;
@@ -62,6 +62,7 @@ int checkVertical(Game *game, int x, int y, char symbol)
     }
 }
 
+// check for a win horizontally
 int checkHorizontal(Game *game, int x, int y, char symbol)
 {
     int i;
@@ -83,6 +84,7 @@ int checkHorizontal(Game *game, int x, int y, char symbol)
     }
 }
 
+// check for a win in the diagonal-right direction
 int checkDiagonalDownRight(Game *game, int x, int y, char symbol)
 {
     int count, basex, basey;
@@ -114,6 +116,7 @@ int checkDiagonalDownRight(Game *game, int x, int y, char symbol)
     }
 }
 
+//check for a win in the diagonal left direction
 int checkDiagonalDownLeft(Game *game, int x, int y, char symbol)
 {
     int count, basex, basey;

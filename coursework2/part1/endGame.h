@@ -1,4 +1,3 @@
-
 int winGame( Game *game, char symbol, int x, int y);
 
 int drawGame( Game *game );

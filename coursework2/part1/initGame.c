@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -20,6 +19,7 @@ Game *initGame( int boardSize, int winLength )
         printf("Incorrect parameter values for board size or win length. Exiting\n");
         return NULL;
     }
+    
     // allocate the Game data structure
     game = (Game *)malloc(sizeof(Game));
 
