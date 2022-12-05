@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <ctype.h>
 
@@ -16,6 +15,7 @@ void playGame( Game *game )
     
     // player 'X' plays first
     int player = 0;
+
     // starting board
     printf("New game starting\n");
     showGame( game );
@@ -25,24 +25,23 @@ void playGame( Game *game )
     // Each pass through the loop is one completed move by a player
     while(1)
     {
-        // Request a move from the next player and check it is valid (an unused square within the board)
         printf("Player %c: Enter your move as row column values:\n",symbols[player]); // use this to request the player move
         int x,y;
         
+        // Request a move from the next player and check it is valid (an unused square within the board)
         do
         {
-            while(inputHandler(&x,&y) == 0)
+            while(inputHandler(&x,&y) == 0) // If the move is invalid you should repeat the request for the current player
             {
-                // If the move is invalid you should repeat the request for the current player
                 printf("Move rejected. Please try again\n"); // use this message if move cannot be made. You must repeat the request for a move
                 printf("Player %c: Enter your move as row column values:\n",symbols[player]); // use this to request the player move
             }
-            moveGood = makeMove(game,symbols[player],x,y);
+            moveGood = makeMove(game,symbols[player],x,y); // If the move is valid update the board
             if(moveGood == 0)
             {
                 printf("Move rejected. Please try again\n");
             }
-        } while ( moveGood == 0 );// If the move is valid update the board
+        } while ( moveGood == 0 );
         
         // After each completed move display the board 
         showGame( game );
@@ -127,7 +126,7 @@ int makeMove( Game *game, char symbol, int x, int y )
     return 1; // move accepted
 }
 
-int inputHandler(int* x, int* y)
+int inputHandler(int* x, int* y) // function to validate input
 {
     char str[100] = {0};
     int digits = 0;

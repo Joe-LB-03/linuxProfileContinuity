@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -26,8 +25,8 @@ int main( int argc, char *argv[] )
     {
         return 0;
     }
-    // play a full game
-    playGame(game);
+    
+    playGame(game); // play a full game
 
     free(game); // free heap memory that was used
 
