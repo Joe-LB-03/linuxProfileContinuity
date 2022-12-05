@@ -71,7 +71,7 @@ int main( int argc, char **argv )
 			return 0;
 		}
 		//verify each grade is valid and correct where needed
-		for(j = 1; j < atoi(argv[2]); j++)
+		for(j = 1; j <= atoi(argv[2]); j++)
 		{
 			int grade = results[i][j];
 			if((grade > 100 || grade < 0)&&(grade != -1)) //account for possible -1 case

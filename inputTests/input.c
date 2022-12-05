@@ -8,19 +8,16 @@ int fgetsAndValidation();
 
 int main (void)
 {
-    //basicScanf();
+    basicScanf();
     //bufferAndFgets();
-    fgetsAndValidation();
+    //fgetsAndValidation();
 }
 
 void basicScanf()
 {
     int x,y;
-    char buff[100];
-    printf("\nPleae enter two digits with one space between them\n");
+       printf("\nPleae enter two digits with one space between them\n");
     scanf("%d %d",&x,&y);
-    fgets(buff,100,stdin);
-    printf("%d %d\n",x,y);
 }
 
 void bufferAndFgets()
