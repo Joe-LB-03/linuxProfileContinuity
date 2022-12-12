@@ -139,14 +139,10 @@ int inputHandler(int* x, int* y) // function to validate input
         {
             digits++;
         }
-        if(!isdigit(str[i]) && (!isspace(str[i])) && (str[i] != '\0'))
+        if(!isdigit(str[i]) && !isspace(str[i]))
         {
-            if(((i != 0) && (str[i - 1] != ' ')) || (str[i] == ' ' && str[i-1] == ' '))
-            {
-                return 0; //input rejected
-            }
+            return 0; //input rejected
         }
-
         if((str[i] == '\n') || (str[i] == '\0'))
         {
             break; //if we hit a newline or terminating character then break
