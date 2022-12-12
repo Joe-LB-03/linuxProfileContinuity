@@ -97,7 +97,7 @@ int checkDiagonalDownRight(Game *game, int x, int y, char symbol)
         basey = basey -1;
     }
 
-    while(basex < game->boardSize && basey<game->boardSize)
+    while(basex <= game->boardSize && basey<=game->boardSize)
     {
         if(game->board[basex][basey] == symbol)
         {
@@ -136,8 +136,7 @@ int checkDiagonalDownLeft(Game *game, int x, int y, char symbol)
         basex = basex -1;
         basey = basey +1;
     }
-
-    while(basex < game->boardSize && basey>0)
+    while(basex <= game->boardSize && basey>=0)
     {
         if(game->board[basex][basey] == symbol)
         {
