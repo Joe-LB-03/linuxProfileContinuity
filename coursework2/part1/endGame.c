@@ -84,7 +84,7 @@ int checkHorizontal(Game *game, int x, int y, char symbol)
     }
 }
 
-// check for a win in the diagonal-right direction
+// check for a win in the diagonal right direction
 int checkDiagonalDownRight(Game *game, int x, int y, char symbol)
 {
     int count, basex, basey;
@@ -102,6 +102,14 @@ int checkDiagonalDownRight(Game *game, int x, int y, char symbol)
         if(game->board[basex][basey] == symbol)
         {
             count++;
+            if(count >= game->winLength)
+            {
+            return 1;
+            }
+        }
+        else
+        {
+            count = 0;
         }
         basex++;
         basey++;
@@ -116,7 +124,7 @@ int checkDiagonalDownRight(Game *game, int x, int y, char symbol)
     }
 }
 
-//check for a win in the diagonal left direction
+// check for a win in the diagonal left direction
 int checkDiagonalDownLeft(Game *game, int x, int y, char symbol)
 {
     int count, basex, basey;
@@ -134,6 +142,14 @@ int checkDiagonalDownLeft(Game *game, int x, int y, char symbol)
         if(game->board[basex][basey] == symbol)
         {
             count++;
+            if(count >= game->winLength)
+            {
+                return 1;
+            }
+        }
+        else
+        {
+            count = 0;
         }
         basex++;
         basey = basey - 1;

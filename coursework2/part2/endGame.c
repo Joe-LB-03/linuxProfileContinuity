@@ -102,6 +102,14 @@ int checkDiagonalDownRight(Game *game, int x, int y, char symbol)
         if(game->board[basex][basey] == symbol)
         {
             count++;
+            if(count >= game->winLength)
+            {
+            return 1;
+            }
+        }
+        else
+        {
+            count = 0;
         }
         basex++;
         basey++;
@@ -134,6 +142,14 @@ int checkDiagonalDownLeft(Game *game, int x, int y, char symbol)
         if(game->board[basex][basey] == symbol)
         {
             count++;
+            if(count >= game->winLength)
+            {
+                return 1;
+            }
+        }
+        else
+        {
+            count = 0;
         }
         basex++;
         basey = basey - 1;
